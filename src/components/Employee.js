@@ -1,5 +1,15 @@
-function Employee(){
-    return <h3>here is a Employee</h3>
+function Employee(props){
+
+    return (
+        <>
+        <h3>here is a Employee {props.name}</h3>
+        <p>{props.role ? props.role: "No role"}</p>
+
+
+    </>
+
+    )
+
 
 
 }
