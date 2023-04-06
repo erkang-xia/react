@@ -3,9 +3,10 @@ import Employee from './components/Employee';
 import { useState } from 'react';
 import {v4 as uuidv4} from 'uuid';
 import AddEmployee from './components/AddEmployee';
+import EditEmployee from './components/EditEmployee';
 
 function App() {
-  const [role, setRole] = useState('dev');// it will take default value 'dev
+  //const [role, setRole] = useState('dev');// it will take default value 'dev
    //[role is the name of the variable, setRole is the func we about to define]
   const [employees, setEmployees] = useState(
     [
@@ -51,7 +52,7 @@ function App() {
 
   function updateEmployee(id, newName, newRole){
     const updateEmployees = employees.map((employee)=>{
-      if(id == employee.id){
+      if(id === employee.id){
         return{...employee,name:newName, role:newRole} //spreading, will expan all the obj attributes
 
       }
@@ -77,28 +78,38 @@ function App() {
 
   const showEmployees = true;
   return (
-    <div className="App justify-center">
+    <div className="App mt-4 ml-5 mr-5 justify-center">
       {showEmployees ? 
           <>
-          <input type = 'text' onChange = {
+          {/*
+            <input type = 'text' onChange = {
             (e)=>{
-              console.log(e.target.value);
+              //console.log(e.target.value);
               setRole(e.target.value); //you don't assgin value directly to role, always use setRole
 
             }
           }
           />
+        */}
           <div className  = "flex flex-wrap">
             {employees.map((employee)=>{
+              //phase2 we want to create an editEmployee components inside the App.js to pass down to employee
+              const editEmployee = 
+              <EditEmployee 
+                id = {employee.id}
+                name = {employee.name} 
+                role = {employee.role} 
+                updateEmployee = {updateEmployee}
+              />
               return (
-              <Employee 
-
+              <Employee                
               key = {employee.id} //key is a reserved key word 
               id = {employee.id}
               name={employee.name} 
               role = {employee.role} 
               img = {employee.img}
-              updateEmployee = {updateEmployee} //pass by data 
+              editEmployee = {editEmployee} //phase 2
+              //updateEmployee = {updateEmployee} //pass by data 
               
               />
               
