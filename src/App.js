@@ -2,6 +2,7 @@ import './index.css';
 import Employee from './components/Employee';
 import { useState } from 'react';
 import {v4 as uuidv4} from 'uuid';
+import AddEmployee from './components/AddEmployee';
 
 function App() {
   const [role, setRole] = useState('dev');// it will take default value 'dev
@@ -58,6 +59,18 @@ function App() {
       return employee;
     });
     setEmployees(updateEmployees);
+  }
+
+  function addEmployee(newName, newRole, newImg){
+    const newEmployee = {
+      id: uuidv4(),
+      name: newName,
+      role: newRole,
+      img: newImg,
+    };
+
+    const updatedEmployees = [...employees, newEmployee];
+    setEmployees(updatedEmployees);
 
 
   }
@@ -85,11 +98,18 @@ function App() {
               name={employee.name} 
               role = {employee.role} 
               img = {employee.img}
-              updateEmployee = {updateEmployee}/>
+              updateEmployee = {updateEmployee} //pass by data 
+              
+              />
+              
               );
 
             } )}
           </div>
+
+          <AddEmployee
+          addEmployee={addEmployee}
+          />
           </> 
             
         :
