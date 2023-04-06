@@ -9,31 +9,37 @@ function App() {
   const [employees, setEmployees] = useState(
     [
       {
+        id : 1,
         name : "Caleb", 
         role : "Developer", 
         img: "https://images.pexels.com/photos/16076799/pexels-photo-16076799.jpeg"
       },
       {
+        id : 2,
         name : "Sam", 
         role : "Developer", 
         img: "https://images.pexels.com/photos/262391/pexels-photo-262391.jpeg"
       },
       {
+        id : 3,
         name : "Andy", 
         role : "Manager", 
         img: "https://images.pexels.com/photos/819530/pexels-photo-819530.jpeg"
       },
       {
+        id : 4,
         name : "Sal", 
         role : "UI designer ", 
         img: "https://images.pexels.com/photos/1164674/pexels-photo-1164674.jpeg"
       },
       {
+        id : 5,
         name : "Kim", 
         role : "Developer", 
         img: "https://images.pexels.com/photos/428340/pexels-photo-428340.jpeg"
       },
       {
+        id : 6,
         name : "Caleb", 
         role : "Developer", 
         img: "https://images.pexels.com/photos/16076799/pexels-photo-16076799.jpeg"
@@ -41,6 +47,20 @@ function App() {
 
     ]
   )
+
+  function updateEmployee(id, newName, newRole){
+    const updateEmployees = employees.map((employee)=>{
+      if(id == employee.id){
+        return{...employee,name:newName, role:newRole} //spreading, will expan all the obj attributes
+
+      }
+
+      return employee;
+    });
+    setEmployees(updateEmployees);
+
+
+  }
 
   const showEmployees = true;
   return (
@@ -60,11 +80,12 @@ function App() {
               return (
               <Employee 
 
-              key = {uuidv4()} //key is a reserved key word 
-
+              key = {employee.id} //key is a reserved key word 
+              id = {employee.id}
               name={employee.name} 
               role = {employee.role} 
-              img = {employee.img}/>
+              img = {employee.img}
+              updateEmployee = {updateEmployee}/>
               );
 
             } )}
