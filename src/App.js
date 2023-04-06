@@ -4,6 +4,7 @@ import { useState } from 'react';
 import {v4 as uuidv4} from 'uuid';
 import AddEmployee from './components/AddEmployee';
 import EditEmployee from './components/EditEmployee';
+import Header from './components/Header';
 
 function App() {
   //const [role, setRole] = useState('dev');// it will take default value 'dev
@@ -78,7 +79,8 @@ function App() {
 
   const showEmployees = true;
   return (
-    <div className="App mt-4 ml-5 mr-5 justify-center">
+    <div className="App bg-gray-200 min-h-screen justify-center">
+      <Header />
       {showEmployees ? 
           <>
           {/*
@@ -91,7 +93,7 @@ function App() {
           }
           />
         */}
-          <div className  = "flex flex-wrap">
+          <div className  = " mt-4 ml-5 mr-5 flex flex-wrap">
             {employees.map((employee)=>{
               //phase2 we want to create an editEmployee components inside the App.js to pass down to employee
               const editEmployee = 
