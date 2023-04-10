@@ -6,6 +6,7 @@ import Customers from './pages/Customer';
 import Dictionary from './pages/Dictionary';
 import Definition from './pages/Definition';
 import NotFound from './components/NotFound';
+import CustomerInfo from './pages/CustomerInfo';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path = '/dfn/:search' element = {<Definition/>}/>
           <Route path = '/404' element = {<NotFound/>}/>
           <Route path = '*' element = {<NotFound/>}/>
+          <Route path = '/cus/:id' element = {<CustomerInfo/>}/>
 
 
         </Routes>

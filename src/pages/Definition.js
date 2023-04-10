@@ -55,6 +55,7 @@ export default function Definition(){
                         )
             })}</>
                     : null }
+            <Link to="/dic">Search another</Link>
             <Dictionary/>
         </>
     
