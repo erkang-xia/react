@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function Dictionary(){
-    //take a input variable and display on the page 
-    const [word, setWord] = useState('');
-    const navigate = useNavigate();
+export default function Dictionary() {
+  //take a input variable and display on the page
+  const [word, setWord] = useState("");
+  const navigate = useNavigate();
 
-    /*
+  /*
 
     useEffect(()=>{
 
@@ -29,31 +29,29 @@ export default function Dictionary(){
 
 
     */
-    
 
-
-
-
-
-    return (
-        
-        <form
-            onSubmit={()=>{
-            navigate('/dfn/'+ word); //help to use enter key to search 
-        }}>
-            <div>
-            <h2>Let's get the definition for {word}</h2>
-            </div>
-            <div className = "space-x-2">
-            <input className = "shrink min-w-0 rounded px-1 py-1" placeholder = "word" type = "text" onChange = {(e)=>{
-                setWord(e.target.value);
-            }}/>
-            <button className = "px-2 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Search</button>
-            </div>
-
-
-        </form>
-    )
-
-
+  return (
+    <form
+      onSubmit={() => {
+        navigate("/dfn/" + word); //help to use enter key to search
+      }}
+    >
+      <div>
+        <h2>Let's get the definition for {word}</h2>
+      </div>
+      <div className="space-x-2">
+        <input
+          className="shrink min-w-0 rounded px-1 py-1"
+          placeholder="word"
+          type="text"
+          onChange={(e) => {
+            setWord(e.target.value);
+          }}
+        />
+        <button className="px-2 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">
+          Search
+        </button>
+      </div>
+    </form>
+  );
 }
