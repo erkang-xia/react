@@ -85,13 +85,13 @@ function EditEmployee(props) {
         <Modal.Footer>
           <button
             form="editEmployeeForm"
-            class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full"
+            className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full"
           >
             Update
           </button>
           <button
             onClick={handleClose}
-            class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full"
+            className="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full"
           >
             Close
           </button>
