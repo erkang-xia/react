@@ -3,10 +3,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import AddCustomer from "../components/AddCustomer";
 import { baseUrl } from "../shared";
 import { LoginContext } from "../App";
+import useFetch from "../hooks/UseFetch";
 
 export default function Customers() {
   const [loggedIn, setLoggedIn] = useContext(LoginContext);
-  const [customers, setCustomers] = useState();
+  //const [customers, setCustomers] = useState();
   const [show, setShow] = useState(false);
   function toggleShow() {
     setShow(!show);
@@ -14,6 +15,24 @@ export default function Customers() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const url = baseUrl + "api/customers/";
+  const {
+    request,
+    appendData,
+    data: { customer } = {},
+    err,
+  } = useFetch(url, {
+    //data: { customer } = {}  we take whats inside of data and name it to customer and give it a default value to {}, until the data is retrived
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("access"), //Make sure to add a space after "Bearer" in the Authorization header
+    },
+  });
+  useEffect(() => {
+    request();
+  }, []);
+  /*
   useEffect(() => {
     const url = baseUrl + "api/customers/";
     fetch(url, {
@@ -40,7 +59,8 @@ export default function Customers() {
         setCustomers(data.customer);
       });
   }, []);
-
+  */
+  /*
   function addCustomer(name, industry) {
     const data = { name: name, industry: industry };
     const url = baseUrl + "api/customers/";
@@ -65,11 +85,20 @@ export default function Customers() {
         console.log(e);
       });
   }
+  */
+  function addCustomer(name, industry) {
+    appendData({ name: name, industry: industry });
+    if (err) {
+      toggleShow();
+    }
+  }
   return (
     <>
       <h1>Here are our Customers</h1>
-      {customers
-        ? customers.map((customer) => {
+
+      {customer
+        ? customer.map((customer) => {
+            console.log(customer);
             return (
               <div className="my-4" key={customer.id}>
                 <Link
@@ -82,7 +111,6 @@ export default function Customers() {
             );
           })
         : null}
-
       <AddCustomer
         addCustomer={addCustomer}
         show={show}

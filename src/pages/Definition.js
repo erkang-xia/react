@@ -3,12 +3,30 @@ import { v4 as uuidv4 } from "uuid";
 import { useParams, Link } from "react-router-dom";
 import NotFound from "../components/NotFound";
 import Dictionary from "./Dictionary";
+import useFetch from "../hooks/UseFetch";
 
 export default function Definition() {
-  const [word, setWord] = useState();
-  const [notFound, setNotFound] = useState(false);
+  //const [word, setWord] = useState();
+  //const [notFound, setNotFound] = useState(false);
   let { search } = useParams();
   //https://api.dictionaryapi.dev/api/v2/entries/en/<word>
+
+  const {
+    request,
+    data: [{ meanings: word }] = [{}],
+    err,
+  } = useFetch(
+    //data:word rename the return data to word
+    //data: [{meanings:word}] = [{}] data:[] go get the first properity, {} go inside the properity, meanings:word rename
+    //= [{}] assign a empty value until data is received
+
+    "https://api.dictionaryapi.dev/api/v2/entries/en/" + search
+  );
+  useEffect(() => {
+    request();
+  });
+
+  /*
   useEffect(() => {
     fetch("https://api.dictionaryapi.dev/api/v2/entries/en/" + search)
       .then((response) => {
@@ -23,8 +41,9 @@ export default function Definition() {
         console.log(data);
       });
   }, []);
+  */
 
-  if (notFound === true) {
+  if (err === 404) {
     return (
       <>
         <NotFound />
@@ -32,6 +51,7 @@ export default function Definition() {
       </>
     );
   }
+
   return (
     <>
       {word ? (

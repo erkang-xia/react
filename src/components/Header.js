@@ -53,12 +53,25 @@ export default function Header(props) {
                           {item.name}
                         </NavLink>
                       ))}
-                      <NavLink
-                        to={loggedIn ? "/logout" : "/login"}
-                        className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline"
-                      >
-                        {loggedIn ? "Logout" : "Login"}
-                      </NavLink>
+                      {loggedIn ? (
+                        <NavLink
+                          to={"/login"}
+                          className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline"
+                          onClick={() => {
+                            setLoggedIn(false);
+                            localStorage.clear();
+                          }}
+                        >
+                          Logout
+                        </NavLink>
+                      ) : (
+                        <NavLink
+                          to={"/login"}
+                          className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline"
+                        >
+                          Login
+                        </NavLink>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -157,12 +170,25 @@ export default function Header(props) {
                     {item.name}
                   </NavLink>
                 ))}
-                <NavLink
-                  to={loggedIn ? "/logout" : "/login"}
-                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline"
-                >
-                  {loggedIn ? "Logout" : "Login"}
-                </NavLink>
+                {loggedIn ? (
+                  <NavLink
+                    to={"/login"}
+                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline"
+                    onClick={() => {
+                      setLoggedIn(false);
+                      localStorage.clear();
+                    }}
+                  >
+                    Logout
+                  </NavLink>
+                ) : (
+                  <NavLink
+                    to={"/login"}
+                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white no-underline"
+                  >
+                    Login
+                  </NavLink>
+                )}
               </div>
             </Disclosure.Panel>
           </>
